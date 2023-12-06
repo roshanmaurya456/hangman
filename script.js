@@ -46,11 +46,13 @@
 
       // Check if all letters have been guessed
       if (correctGuesses.length === new Set(wordArray).size) {
+        document.getElementById('winnerimg').style.display='block';
         setMessage('Congratulations! You guessed the word: ' + selectedWord);
       } else {
         // Check if the player has reached the maximum allowed incorrect guesses
         const incorrectGuesses = guessedLetters.filter(letter => !wordArray.includes(letter));
         if (incorrectGuesses.length >= 6) {
+          document.getElementById('hangimg').style.display='block';
           setMessage('Game Over! The word was: ' + selectedWord);
         }
       }

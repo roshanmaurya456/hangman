@@ -9,13 +9,20 @@
 
 </head>
 <body>
+<div class="game-container">
+    <div id="hangman">Hangman Game</div>
+    <br>
 
-    <div id="hangman">Hangman Game</div><br><br>
-    <h3 id="word-display"></h3><br><br><br>
-    <input type="text" id="guess-input" maxlength="1">
-    <button id="btn-guess" onclick="makeGuess()">Guess</button>
-    <div id="message"></div>
+    <h3 id="game-status">Game-status :</h3><br>
 
+    <input type="text" id="guess-word" maxlength="1">
+
+    <button id="btn-guess" onclick="makeGuess()">Guess</button><br>
+
+    <img src="images/hangman.jpg" alt="hangman image" id="hangimg">
+    <img src="images/winner.jpg" alt="winner image" id="winnerimg">
+    <h3 id="message"></h3>
+</div>
 
 </body>
 </html>

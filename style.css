@@ -1,11 +1,11 @@
-body{
+body {
     background-image: linear-gradient(black, rgba(44, 41, 41, 0.881), rgba(101, 95, 95, 0.616), white);
     height:100%;
     height:100vh;
     
 }
 
-.heading{
+.heading {
    margin-top: 10%;
    font-size: 50px;
     display: flex;
@@ -14,14 +14,67 @@ body{
     color: aliceblue;
 }
 
-.start-btn{
+.start-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     color: aliceblue;
 }
-.start-btn button{
+.start-btn button {
     font-size: 40px;
     padding: 20px;
     border-radius: 10px;
+}
+
+#hangman {
+    color: aliceblue;
+}
+#game-status{
+    color: red;
+    margin-left: 50px;
+}
+
+#guess-word {
+    width: 100px;
+    height: 50px;
+    border: solid rgba(63, 61, 61, 0.642);;
+    border-radius: 10px;
+    background-color: rgba(63, 61, 61, 0.642);
+    color: aliceblue;
+    margin-left: 50px;
+}
+.game-container {
+    max-height: 100%;
+    height: 100vh;
+     font-size: 50px;
+     margin-left: 600px;
+     justify-content: center;
+     align-items: center;
+     color: aliceblue;
+}
+
+#btn-guess{
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+#message{
+    margin-right: 200px;
+}
+#hangimg{
+    width: 200px;
+    height: 200px;
+    display: none;
+    margin-left: 0;
+
+}
+#winnerimg{
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    margin-right: 0;
+    display:none;
 }
