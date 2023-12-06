@@ -65,6 +65,7 @@ body {
     margin-right: 200px;
 }
 #hangimg{
+    margin-top: 20px;
     width: 200px;
     height: 200px;
     display: none;
