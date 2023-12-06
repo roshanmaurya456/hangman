@@ -1,43 +1,70 @@
-let word = "javascript";
-let guessedWord = "_".repeat(word.length);
-let guessedLetters = [];
-let attempts = 7;
+    // Array of words for the game
+    const words = ['hangman', 'javascript', 'html', 'css', 'developer'];
 
-document.getElementById("word").innerHTML = guessedWord;
+    // Select a random word from the array
+    let selectedWord = words[Math.floor(Math.random() * words.length)];
 
-function checkLetter(letter) {
-    if (word.includes(letter) && !guessedLetters.includes(letter)) {
-        guessedLetters.push(letter);
-        let wordArray = word.split("");
-        for (let i = 0; i < wordArray.length; i++) {
-            if (wordArray[i] === letter) {
-                guessedWord = guessedWord.split("");
-                guessedWord[i] = letter;
-                guessedWord = guessedWord.join("");
-            }
+    // Array to store guessed letters
+    let guessedLetters = [];
+
+    // Function to display the current state of the word
+    function displayWord() {
+      const wordDisplay = document.getElementById('game-status');
+      wordDisplay.innerHTML = selectedWord
+        .split('')
+        .map(letter => (guessedLetters.includes(letter) ? letter : '_'))
+        .join(' ');
+    }
+
+    // Function to handle user guesses
+    function makeGuess() {
+      const guessInput = document.getElementById('guess-word');
+      const guess = guessInput.value.toLowerCase();
+
+      // Check if the guess is a single letter
+      if (guess.length === 1 && /^[a-zA-Z]$/.test(guess)) {
+        // Check if the letter has already been guessed
+        if (guessedLetters.includes(guess)) {
+          setMessage('You already guessed that letter!');
+        } else {
+          guessedLetters.push(guess);
+          displayWord();
+          checkGameStatus();
         }
-    } else if (!word.includes(letter) && !guessedLetters.includes(letter)) {
-        attempts--;
-        guessedLetters.push(letter);
+      } else {
+        setMessage('Please enter a valid single letter.');
+      }
+
+      // Clear the input field
+      guessInput.value = '';
     }
 
-    if (guessedWord === word) {
-        document.getElementById("game-status").innerHTML = "Congratulations! You guessed the word!";
-    } else if (attempts === 0) {
-        document.getElementById("game-status").innerHTML = "Game Over!";
-    } else {
-        document.getElementById("game-status").innerHTML = `Attempts Remaining: ${attempts}`;
+    // Function to check the game status
+    function checkGameStatus() {
+      const wordArray = selectedWord.split('');
+      const correctGuesses = guessedLetters.filter(letter => wordArray.includes(letter));
+
+      // Check if all letters have been guessed
+      if (correctGuesses.length === new Set(wordArray).size) {
+        setMessage('Congratulations! You guessed the word: ' + selectedWord);
+      } else {
+        // Check if the player has reached the maximum allowed incorrect guesses
+        const incorrectGuesses = guessedLetters.filter(letter => !wordArray.includes(letter));
+        if (incorrectGuesses.length >= 6) {
+          setMessage('Game Over! The word was: ' + selectedWord);
+        }
+      }
     }
 
-    document.getElementById("word").innerHTML = guessedWord;
-}
+    // Function to display messages
+    function setMessage(message) {
+      const messageElement = document.getElementById('message');
+      messageElement.textContent = message;
+    }
 
-function newGame() {
-    word = "javascript";
-    guessedWord = "_".repeat(word.length);
-    guessedLetters = [];
-    attempts = 7;
+    function gamePage(){
+      window.location.href ="game.html";
+    }
 
-    document.getElementById("game-status").innerHTML = `Attempts Remaining: ${attempts}`;
-    document.getElementById("word").innerHTML = guessedWord;
-}
+    // Initial display
+    displayWord();
